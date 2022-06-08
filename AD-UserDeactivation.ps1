@@ -34,4 +34,3 @@ try {
 catch [System.Management.Automation.RuntimeException]{
     Write-Output("Error: $_")
 }
-
