@@ -34,7 +34,8 @@ $Passwords = @()
 # $Identities = "mark.bosta", "bill.burrows", "robin.fahey"
 # $Computers = "isigns-markb", "isigns-bill", "ISIGNS-ROBINnnn"
 $Computers = "DESKTOP-51PNR1L"
-$Identities = "bob.clemente", "blob.clemente", "blobby.clemente"
+# $Identities = "bob.clemente", "blob.clemente", "blobby.clemente"
+
 try {
     foreach ($Computer in $Computers){ComputerDeactivation($Computer)}
     # foreach ($Identity in $Identities){$Passwords += UserDeactivation($Identity)}
