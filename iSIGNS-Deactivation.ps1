@@ -2,7 +2,6 @@
 # Purpose: Deactivate iSIGNS Computer AD infrastructure
 # Date: 6/8/2022
 
-Write-Output("Test")
 function New-RandomPassword {
     $min = 8
     $max = 16
@@ -13,7 +12,8 @@ function New-RandomPassword {
 
     return $newPassword
 }
-function Deactivation([var]$Identity ) {
+function UserDeactivation([string]$Identity ) {
+
     $user = Get-ADUser -Identity $Identity
     $newPassword = New-RandomPassword
     Set-ADAccountPassword -Identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newPassword -Force)
@@ -22,17 +22,26 @@ function Deactivation([var]$Identity ) {
     return $newPassword
 }
 
-Write-Output("Starting")
+function ComputerDeactivation([string]$Computer) {
+    # Stop-Computer -ComputerName $Computer
+    $comp = Get-ADComputer -Identity $Computer
+    Disable-ADComputer -Identity $comp
+    # Write-Output($comp)
+    # Write-Output($Computer)
+}
+
 $Passwords = @()
 # $Identities = "mark.bosta", "bill.burrows", "robin.fahey"
 # $Computers = "isigns-markb", "isigns-bill", "ISIGNS-ROBINnnn"
+$Computers = "DESKTOP-51PNR1L"
 $Identities = "bob.clemente", "blob.clemente", "blobby.clemente"
 try {
-    # foreach ($Computer in $Computers){}
-    foreach ($Identity in $Identities){$Passwords += Deactivation($Identity)}
+    foreach ($Computer in $Computers){ComputerDeactivation($Computer)}
+    # foreach ($Identity in $Identities){$Passwords += UserDeactivation($Identity)}
 }
 catch [System.Management.Automation.RuntimeException]{
     Write-Output("Error: $_")
 }
-Write-Output("Ended")
-Write-Output($Passwords)
+# Write-Output($Passwords)
+
+Write-Output("Done")
