@@ -24,8 +24,10 @@ function UserDeactivation([string]$Identity ) {
 
 function ComputerDeactivation([string]$Computer) {
     # Stop-Computer -ComputerName $Computer
+    Invoke-CimMethod -ClassName Win32_Operatingsystem -ComputerName $Computer -MethodName Win32Shutdown -Arguments @{ Flags = 4 }
     $comp = Get-ADComputer -Identity $Computer
-    Disable-ADComputer -Identity $comp
+    Disable-ADAccount -Identity $comp
+
     # Write-Output($comp)
     # Write-Output($Computer)
 }
