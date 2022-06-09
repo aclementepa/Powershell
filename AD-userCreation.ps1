@@ -14,7 +14,7 @@ Param
 function New-RandomPassword {
     $min = 8
     $max = 16
-    $nonAlpha = 5    
+    $nonAlpha = 5
     $length = Get-Random -Minimum $min -Maximum $max
     
     Add-Type -AssemblyName 'System.Web'

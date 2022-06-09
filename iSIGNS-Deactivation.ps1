@@ -13,7 +13,6 @@ function New-RandomPassword {
     return $newPassword
 }
 function UserDeactivation([string]$Identity ) {
-
     $user = Get-ADUser -Identity $Identity
     $newPassword = New-RandomPassword
     Set-ADAccountPassword -Identity $user -Reset -NewPassword (ConvertTo-SecureString -AsPlainText $newPassword -Force)
@@ -21,7 +20,6 @@ function UserDeactivation([string]$Identity ) {
 
     return $newPassword
 }
-
 function ComputerDeactivation([string]$Computer) {
     # Stop-Computer -ComputerName $Computer
     # Invoke-CimMethod -ClassName Win32_Operatingsystem -ComputerName $Computer -MethodName Win32Shutdown -Arguments @{ Flags = 4 }
@@ -30,10 +28,10 @@ function ComputerDeactivation([string]$Computer) {
 }
 
 $Passwords = @()
-# $Identities = "mark.bosta", "bill.burrows", "robin.fahey"
-# $Computers = "isigns-markb", "isigns-bill", "ISIGNS-ROBINnnn"
-$Computers = "DESKTOP-51PNR1L"
-$Identities = "bob.clemente", "blob.clemente", "blobby.clemente"
+$Identities = "bill.burrows", "robin.fahey"
+$Computers =  "isigns-bill", "ISIGNS-ROBINnnn"
+# $Computers = "DESKTOP-51PNR1L"
+# $Identities = "bob.clemente", "blob.clemente", "blobby.clemente"
 
 try {
     foreach ($Computer in $Computers){ComputerDeactivation($Computer)}
