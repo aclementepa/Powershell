@@ -24,27 +24,22 @@ function UserDeactivation([string]$Identity ) {
 
 function ComputerDeactivation([string]$Computer) {
     # Stop-Computer -ComputerName $Computer
-    Invoke-CimMethod -ClassName Win32_Operatingsystem -ComputerName $Computer -MethodName Win32Shutdown -Arguments @{ Flags = 4 }
+    # Invoke-CimMethod -ClassName Win32_Operatingsystem -ComputerName $Computer -MethodName Win32Shutdown -Arguments @{ Flags = 4 }
     $comp = Get-ADComputer -Identity $Computer
     Disable-ADAccount -Identity $comp
-
-    # Write-Output($comp)
-    # Write-Output($Computer)
 }
 
 $Passwords = @()
 # $Identities = "mark.bosta", "bill.burrows", "robin.fahey"
 # $Computers = "isigns-markb", "isigns-bill", "ISIGNS-ROBINnnn"
 $Computers = "DESKTOP-51PNR1L"
-# $Identities = "bob.clemente", "blob.clemente", "blobby.clemente"
+$Identities = "bob.clemente", "blob.clemente", "blobby.clemente"
 
 try {
     foreach ($Computer in $Computers){ComputerDeactivation($Computer)}
-    # foreach ($Identity in $Identities){$Passwords += UserDeactivation($Identity)}
+    foreach ($Identity in $Identities){$Passwords += UserDeactivation($Identity)}
 }
 catch [System.Management.Automation.RuntimeException]{
     Write-Output("Error: $_")
 }
-# Write-Output($Passwords)
-
-Write-Output("Done")
+Write-Output($Passwords)
