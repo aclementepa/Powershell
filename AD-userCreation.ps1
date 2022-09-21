@@ -31,7 +31,10 @@ if([string]::IsNullOrWhiteSpace($password)) {
 }
 $password = ConvertTo-SecureString -String $password -AsPlainText -Force
 try {
-    New-ADUser -Name $fullName -GivenName $firstname  -UserPrincipalName "$username@howardindustries.local" -Organization "Howard Industries" -DisplayName $fullName -SamAccountName $username -Surname $name[1] -AccountPassword (ConvertTo-SecureString -String $password -AsPlainText -Force) -Enabled $true -CannotChangePassword $true -PasswordNeverExpires $true -PasswordNotRequired $False -ScriptPath "$logon_script.vbs"
+    New-ADUser -Name $fullName -GivenName $firstname -UserPrincipalName "$username@howardindustries.local" 
+               -Organization "Howard Industries" -DisplayName $fullName -SamAccountName $username -Surname $name[1]
+               -AccountPassword (ConvertTo-SecureString -String $password -AsPlainText -Force) -Enabled $true -CannotChangePassword $true 
+               -PasswordNeverExpires $true -PasswordNotRequired $False -ScriptPath "$logon_script.vbs"
     Set-ADOrganizationalUnit -Identity $OU $Username -
     Write-Output("User account for $username has been successfully created.")
 
@@ -42,7 +45,7 @@ try {
             Add-ADOU
         }
     }
-}
+}l
 catch [System.Management.Automation.RuntimeException]{
     Write-Output("Error: $_")
 }
