@@ -1,0 +1,33 @@
+7 Principles of Software Testing
+
+- Exhaustive testing is not possible
+	What is most likely to make the app fail?	
+
+- Defect Clustering
+	Pareto Principle: ~80% of problems are found in 20% of modules
+
+- Pesticide Paradox
+	If same repetitive tests are conducted, less bugs found
+	Software becomes resistant
+	Test cases need to be reviewed, revised and new test cases added
+
+- Testing shows defects
+	Reduces probability of undiscovered defects
+	Just because none found, doesn't mean there are none
+
+- Absence of error, fallacy
+	Could be tested thoroughly for the wrong requirement
+	Just because it doesn't have flaws, doesn't mean it meets client's requirements
+
+- Early Testing
+	Testing should start as soon as possible in SDLC
+
+- Testing is context dependent
+	Way you test e-commerce site different than testing commercial software
+
+
+
+V Model: Validation/Verification
+a testing phase parallel to each development phase
+Extension of waterfall model, testing is done on each stage parallel
+

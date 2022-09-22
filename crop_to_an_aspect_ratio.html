@@ -1,0 +1,66 @@
+Because I keep getting pictures and stuff with different aspect ratios, I made this to reduce the math that I need to do in order to know how much to crop to make the image have the same aspect ratio. </br>
+This will calculate and tell you what you need to do to make them match.
+
+</br>
+</br>
+</br>
+
+The size of the first image, the image whose aspect ratio you want to mimic.
+</br>
+width:<input type="number" id="input_width"></input>
+</br>
+height:<input type="number" id="input_height"></input>
+</br>
+</br>
+</br>
+The dimensions of the second image, the image you want to change to match the aspect ratio of the first image.
+</br>
+width:<input type="number" id="input_width2"></input>
+</br>
+height:<input type="number" id="input_height2"></input>
+</br>
+
+</br>
+<button onclick="doit()">Calculate</button>
+</br>
+</br>
+
+<div id="output"></div>
+
+<script>
+function doit()
+{
+	//width and height are the sizes I want to match
+	var width=document.getElementById("input_width").value
+	var height=document.getElementById("input_height").value
+	//width2 and height2 are the sizes that need changed
+	var width2=document.getElementById("input_width2").value
+	var height2=document.getElementById("input_height2").value
+	
+	//	ratio=width/height
+	//	ratio*height=width
+	//	height=width/ratio
+
+	var targetRatio = width/height
+	if (targetRatio == width2/height2)
+	{
+		document.getElementById("output").innerHTML="It is the same aspect ratio. No cropping needed."
+	}
+	else
+	{
+		var targetHeight = width2/targetRatio
+		
+		if (targetHeight < height2)
+		{
+			document.getElementById("output").innerHTML="To make the second image match the aspect ratio of the first image, you will need to crop the second image's height to <b>" + targetHeight +"</b>"
+		}
+		else
+		{
+			targetWidth = targetRatio*height2
+			document.getElementById("output").innerHTML="To make the second image match the aspect ratio of the first image, you will need to crop the second image's width to <b>" + targetWidth +"</b>"
+		}
+	}
+	
+}
+
+</script>

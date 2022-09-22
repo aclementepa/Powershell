@@ -1,0 +1,233 @@
+S - Single Responsibility Principle
+O - Open Closed Principle
+L - Liskov Substitution Principle
+I - Interface Segregation Principle
+D - Dependency Inversion Principle
+
+Single Responsibility Principle
+there should never be more than one reason for a class to change
+Every class/structure should have only one job to do
+Everything about that class should be related to that single purpose
+Does not mean they should only contain one method or property
+
+
+Open/Closed Principle (OCP)
+All classes should be open for extension but closed for modification
+New functionalities should be able to be added
+Once you have developed a class, you shouldn't modify it (except for bugs)
+
+
+Liskov Subsitution Principle
+Derived classes should not change the expected behavior of base class
+If we create a derived class for a base class, it should properly reflect the base
+class and extend it without replacing the functionality of old classes
+
+Interface Segregation Principle
+clients should not be forced to depend upon interfaces that they don't use
+original class implements each interface
+Client code uses the smaller interface without knowing other members exist
+
+
+Dependency Inversion Principle
+High level modules should not depend upon low level modules, both should depend upon
+abstractions
+Abstractions should not depend upon details
+Details should depend upon abstractions
+
+
+
+Design Patterns
+Creational
+Structural
+Behavioral
+Concurrency
+
+
+Creational Design Patterns
+- Class instantiation
+Object-creation patterns use delegation to get the job done
+	- Abstract Factory
+	- Builder
+	- Factory
+	- Prototype
+	- Singleton
+	- Object Pool
+
+Structural Design Patterns
+- Class & Object Composition
+Use inheritance to compose interfaces
+Define ways to obtain new functionality
+	- Adapter
+	- Bridge
+	- Composite
+	- Decorator
+	- Facade
+	- Flyweight
+	- Front Controller
+	- Module
+	- Proxy
+
+Behavioral Design Patterns
+- Class object communication
+Concerned with communication between objects
+	- Chain of Responsibility
+	- Command
+	- Iterator
+	- Mediator
+	- Observer
+	- Strategy
+	- Template method
+	- Visitor
+
+Concurrency Design Patterns
+Multi-threaded programming paradigm
+	- Active Object
+	- Monitor Object
+	- Half-Sync / Half-Async
+	- Leader/Followers
+	- Thread Specific Storage
+	- Thread Pool
+	- Scheduler
+
+UML - Unified Modeling Language
+Used for visualizing, specifying, constructing, & documenting components of a software system
+Can be used to depict flow in a construction unit etc.
+Pictorial language
+
+- Higher-ups understand UML
+- Visual representation of implementation
+- Standard notation
+
++ for public members
+- for private members
+# for protected members
+
+Class Associations
+- association is a link between classes
+
+
+Factory Pattern
+- most prevalent
+- Creational
+
+Data Access Object (DAO) Pattern
+- Provides a technique for separating object persistence & data access
+  logic from any particular persistence mechanism or API
+
+- Provides flexibility to change an application's persistence mechanism over time
+  without the need to re-engineer application logic
+
+
+Module 2 - 
+Abstract Factory Pattern
+- most common in portable applications
+- Easy to exchange object families, not just objects
+- Used when app/system needs to be configured with on of a multiple
+family of objects
+
+
+Singleton Pattern
+- restrict # of objects instantiated to just one
+- instance is class-specific, so should be a static member
+- private constructor
+- private constructor shouldn't be able to be called outside of class
+  single instance should be created within the class
+- Multiple applications accessing single instance, access must be synchronized
+- use lazy initialization technique (instantiation when required)
+
+Prototype Pattern
+- creation of object is expensive & resource intensive
+- Usually in game programming
+- generate a clone of an already generated object
+- Classes involved: 
+	Client - creates new object asking a prototype to clone itself
+	Prototype - declares an interface or abstract class for cloning itself
+	ConcretePrototype - implements operation for cloning itself
+
+- can be read from a file for one instantiation, but cloned for other objects
+
+Object Pool Pattern
+- used where performance is utmost performance
+- object pool acts as a container of objects where objects can be taken from the pool
+  and returned to the pool
+- Mostly used in web container of servers to create thread pools & data source pools
+  to process new requests
+
+- Internal storage of pooled objects handled with 2 hashtables (locked & unlocked)
+One for locked objects & the other for unlocked
+- Objects themselves key of hashtable & last-usage time will be value
+- By storing last time an object was used, the pool can expire it & free up memory
+after inactivity
+
+Builder Pattern:
+- Can be used to construct a complex object step by step
+- Constructs an object in a generic way
+- Can be used to create different representations of the same object type
+- Constructs product step by step under control of director
+
+Builder UML
+- Interface for creating parts of a Product oobject
+- Director class constructs complex object using Builder interface
+- ConcreteBuilder constructs & puts together parts of the product by implementing 
+Builder interface
+- Product represents complex object that is being built
+
+To create an immutable (static) object, don't create setter methods
+
+
+STRUCTURAL DESIGN PATTERNS
+
+Structural patterns deal with how classes & objects are composed to form larger structures
+Inheritance concept is used for composing objects to get new functionalities
+These patterns are particularly useful for making independently developed class libraries work together
+
+Adapter Pattern
+Converts interface of a class into another interface
+Lets 2 incompatible interfaces work together
+
+Bridge Pattern
+decouples an abstraction from its implementation so the two can vary independently
+Draw shapes (circle, triangle) and have different fills (shaded, striped)
+With bridge pattern, can be abstracted and doesn't have to be binded to the 
+shape abstract class
+
+Persistence - storage of data after the process with which it was created has ended
+Must write to non-volatile storage
+
+
+Composite Pattern
+represents part-whole hierarchies in tree like structure
+part-whole hierarchy: group of objects in which some objects can contain others"
+object can represent a single object(leaf) or a group of objects (composite)
+
+Facade Pattern
+a simplified interface to the client
+Used to hide complexities behind simplified interface
+e.g. OS
+
+JDBC API implements Facade pattern where deveopers use DriverManager class to get
+database connection & perform subsequent operation on database
+Not required to know low level API for each different database implementation 
+(Oracle, MYSQL, IBM DB2, etc.)
+
+Decorator Pattern
+Creation of wrapper to original object by providing extra functionalities to it
+Possible to do separately, but better for not rewriting code & still adding functionality
+Increases the # of subclasses & creates a memory over-head
+Can use the same decorator to decorate different objects unless, decorators have the
+same interface as the object it is decorating
+
+e.g. Beverage abstract class & specific coffee classes extending from abstract class
+Each coffee can be decorated with extra milk or soy or mocha etc.
+
+Flyweight Pattern
+used to reduce the # of object instances at runtime which saves memory
+If available resources are much less, not wise to keep creating objects or creating threads
+creates an object that if it doesn't find the appropriate match in the object pool,
+otherwise it returns the matching object
+
+line with multicolor background, can reuse line object (e.g. green line)
+
+intrinsic property (color)
+extrinsic property (length & location)
+
