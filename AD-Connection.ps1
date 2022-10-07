@@ -1,8 +1,8 @@
 # $ID = Get-GPO -Name "Default Domain Controllers Policy"
 # Enable the WinRM Service through GPO
 # Write-Output($ID)
-# Write-Output(Get-GPO -All -Domain "howardindustries.local")
-# Write-Output(Get-GPOReport -All -Domain "howardindustries.local")
+# Write-Output(Get-GPO -All -Domain ".local")
+# Write-Output(Get-GPOReport -All -Domain ".local")
 
 
 Get-GPOReport -Name "Default Domain Policy" -ReportType HTML -Path "C:\Users\anthony.clemente\Desktop\DefaultDomainPolicy.html"

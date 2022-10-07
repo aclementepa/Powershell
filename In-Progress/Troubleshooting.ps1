@@ -6,12 +6,12 @@
 
 function Download-Updates {
     Write-Output("Starting Download Updates")
-    $AdminCredentials = "anthony.clemente"
-    $computer = "howard-01.howardindustries.local"
+    $AdminCredentials = "test.admin"
+    $computer = "computer.domain.local"
 
     try {
         # Scan for needed updates
-        if(Test-Connection -ComputerName "howard-01.howardindustries.local") {
+        if(Test-Connection -ComputerName "computer.domain.local") {
             Write-Output("Connection Succesful")
             # Get-Command -Module WindowsUpdateProvider
             $Updates = Start-WUScan -SearchCriteria "Type='Software' AND IsInstalled=0"

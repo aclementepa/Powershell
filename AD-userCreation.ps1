@@ -31,8 +31,8 @@ if([string]::IsNullOrWhiteSpace($password)) {
 }
 $password = ConvertTo-SecureString -String $password -AsPlainText -Force
 try {
-    New-ADUser -Name $fullName -GivenName $firstname -UserPrincipalName "$username@howardindustries.local" 
-               -Organization "Howard Industries" -DisplayName $fullName -SamAccountName $username -Surname $name[1]
+    New-ADUser -Name $fullName -GivenName $firstname -UserPrincipalName "$username@domain.local" 
+               -Organization "Organization" -DisplayName $fullName -SamAccountName $username -Surname $name[1]
                -AccountPassword (ConvertTo-SecureString -String $password -AsPlainText -Force) -Enabled $true -CannotChangePassword $true 
                -PasswordNeverExpires $true -PasswordNotRequired $False -ScriptPath "$logon_script.vbs"
     Set-ADOrganizationalUnit -Identity $OU $Username -

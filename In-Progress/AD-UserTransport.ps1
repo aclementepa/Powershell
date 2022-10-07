@@ -31,7 +31,7 @@ function Import-ADUsers {
     # Create User
     $users = Import-CSV -Path $Path | ForEach-Object {
         
-        $UserPrincipalName = $_."SamAccountName" + "@howard-industries.local"
+        $UserPrincipalName = $_."SamAccountName" + "@domain.local"
 
         $user = New-ADUser -Name $_."Name" -UserPrincipalName $UserPrincipalName -DisplayName $_."Name" -SamAccountName $_."SamAccountName" -GivenName $_."GivenName" -Surname $_."Surname" -AccountPassword (ConvertTo-SecureString -String $password -AsPlainText -Force) -Enabled $true -CannotChangePassword $true -PasswordNeverExpires $true -PasswordNotRequired $False -ScriptPath "$_.'SamAccountName'.vbs"
         # Add User to corresponding group
@@ -47,7 +47,7 @@ function Import-ADUsers {
         Add-ADGroupMember -Identity $ADGroup -Members $_."SamAccountName"
         
         # Format: CN,OU,OU,DN,DN
-        # Output: OU=,DC=howard-industries,DC=local
+        # Output: OU=,DC=domain,DC=local
     }
 }    
 

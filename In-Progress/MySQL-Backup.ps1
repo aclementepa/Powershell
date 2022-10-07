@@ -2,7 +2,6 @@
 # Creates a backup (.sql) file, stores it locally, then creates a
 # compressed, encrypted (.7z) file and uploads it to our offsite FTP server.
 
-# CMD Author: Ryan Barninger (04-08-2010)
 # PS Author: Anthony Clemente (anthonyc@howardindustries.com)
 # Created: 2-23-2022
 
@@ -12,19 +11,19 @@
 # ---------------------------------
 
 # Name and password of the database user
-$DbUser = "howardindustries"
-$DbPass = "39n5hs83n58d"
+$DbUser = "user"
+$DbPass = "odsiuafldsohflaksfjd"
 
 $DMSUser = "root"
-$DMSPass = "h!si9ns*dms"
+$DMSPass = "odsiuafldsohflaksfjd"
 
-$DMSDb="dms"
+$DMSDb="database"
 
 
 
 # Server and name of the database to backup
-$DbHost="173.248.148.26"
-$DbName="howardindustries"
+$DbHost="293.239.281.30"
+$DbName="database"
 
 # Directory where nightly database backup files are stored
 $BkupDir="C:\Backup\MySql\Website\Night\ThisWeek"
@@ -35,24 +34,24 @@ $TempBkupDir="C:\Backup\MySql\Website\Temp"
 
 # On-site backup drive
 $OnsiteBkupShareltr="y:"
-$OnsiteBkupShare="\\GALATHILION\Database-Backups\Websites\Howard"
-$OnsiteBkupUser="Galathilion\Admin"
-$OnsiteBkupPass="h!si9ns*Galathilion"
+$OnsiteBkupShare="\\tester\Database-Backups\Websites"
+$OnsiteBkupUser="tester\Admin"
+$OnsiteBkupPass="dafsdfadfasdf"
 
 
 # FTP user and password
-$FtpUser="howardindustries"
-$FtpPassword="d83j57n29ch4"
+$FtpUser="user"
+$FtpPassword="odsiuafldsohflaksfjd"
 
 # Remote FTP server
-$FtpServer="ftp.howardindustries.com"
+$FtpServer="ftp.website.com"
 
 
 # Path of 7zip compression & encryption tool
 $Zip="C:\Program Files\7-Zip\7z.exe"
 
 # Passphrase used to encrypt the zipfile.
-$Passphrase="h!si9ns"
+$Passphrase="passphrase"
  
 # Get Current Date
 $CurrentDate = Get-Date -Format "yyyymmdd HH:mm"
@@ -71,9 +70,9 @@ Write-Host "[INFO] Database: $SqlDatabase"
 
 # MySql Binaries Directory
 $MySqlDir="C:\Program Files\MySQL\MySQL Server 8.0"
-$BackupFolder = "\\GALATHILION\Database-Backups\Websites\Howard\"
+$BackupFolder = "\\tester\Database-Backups\Websites\"
 $dbuser = "root"
-$dbpass = "h!si9ns*dms"
+$dbpass = "odsiuafldsohflaksfjd"
 $BackupDate = Get-Date -Format "yyyymmdd HH:mm"
 
 # Query and backup MySQL Databases
@@ -87,6 +86,3 @@ try {
 }catch{
     Write-Host("Backup failed")
 }
-
-
-# Backup-SqlDatabase -ServerInstance "." -Database "dms" -BackupFile ("\\GALATHILION\Database-Backups\Websites\Howard\$DMSDbName-$CurrentDate") -Incremental

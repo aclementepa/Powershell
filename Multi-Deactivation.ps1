@@ -28,9 +28,9 @@ function ComputerDeactivation([string]$Computer) {
 }
 
 $Passwords = @()
-$Identities = "bill.burrows", "robin.fahey"
-$Computers =  "isigns-bill", "ISIGNS-ROBINnnn"
-# $Computers = "DESKTOP-51PNR1L"
+$Identities = "", ""
+$Computers =  "", ""
+# $Computers = ""
 # $Identities = "bob.clemente", "blob.clemente", "blobby.clemente"
 
 try {
